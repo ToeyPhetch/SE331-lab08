@@ -1,56 +1,26 @@
 package camt.se331.shoppingcart.entity;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by TOP on 29/3/2559.
+ * Created by pan on 3/29/2016.
  */
 @Entity
 public class Image {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Id
-     @GeneratedValue
-     private Long id;
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+    @GeneratedValue
+    private Long id;
 
     String fileName;
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
     @Lob
-     byte[] content;
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
+    byte[] content;
     String contentType;
+
+
+    public Image() {
+    }
+
 
     public Date getCreated() {
         return created;
@@ -60,6 +30,39 @@ public class Image {
         this.created = created;
     }
 
-    @Temporal(TemporalType.TIME)
-             Date created;
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    @Temporal(TemporalType.TIME)
+    Date created;
+}

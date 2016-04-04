@@ -1,10 +1,9 @@
 package camt.se331.shoppingcart.config;
-  
+
 
 import camt.se331.shoppingcart.common.SerializableResourceBundleMessageSource;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,9 +15,9 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import java.util.Locale;
-@CrossOrigin
+
 @EnableWebMvc
-@Configuration 
+@Configuration
 @ComponentScan(basePackages = {"camt.se331.shoppingcart"})
 @EnableAspectJAutoProxy
 @Import({PersistenceContext.class})
@@ -34,13 +33,22 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-	@Bean  
-    public UrlBasedViewResolver setupViewResolver() {  
-        UrlBasedViewResolver resolver = new UrlBasedViewResolver();  
-        resolver.setPrefix("/views/");  
-        resolver.setSuffix(".jsp");  
-        resolver.setViewClass(JstlView.class);  
-        return resolver;  
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(1000000);
+        return  multipartResolver;
+    }
+
+
+    @Bean
+    public UrlBasedViewResolver setupViewResolver() {
+        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+        resolver.setPrefix("/views/");
+        resolver.setSuffix(".jsp");
+        resolver.setViewClass(JstlView.class);
+        return resolver;
     }
 
     // The localization here
@@ -70,13 +78,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         localChangeInterceptor.setParamName("lang");
         return localChangeInterceptor;
     }
-    @Bean
-    public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(1000000);
-        return multipartResolver;
-    }
-
 
 
 

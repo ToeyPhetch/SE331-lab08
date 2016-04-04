@@ -50,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
         return productDao.getProductsByName(name);
     }
 
-
     @Override
     @Transactional
     public Product addImage(Product product, Image image) {
@@ -58,5 +57,4 @@ public class ProductServiceImpl implements ProductService {
         productDao.updateProduct(product);
         return product;
     }
-
 }
